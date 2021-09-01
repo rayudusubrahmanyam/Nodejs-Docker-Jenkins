@@ -4,12 +4,15 @@ pipeline {
     stages {
         stage('Fetch Repository') {
             steps {
-                git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/rayudusubrahmanyam/Nodejs-Docker-Jenkins.git'
-                  }
+                script {
+                    fetchRepo('main','https://github.com/rayudusubrahmanyam/Nodejs-Docker-Jenkins.git')
+                }
+                
+            }
         }
         stage('NPM Install') {
             steps {
-                sh 'npm install'
+                npmInstall();
             }
         }
         stage('Docker Image Build and Push') {
