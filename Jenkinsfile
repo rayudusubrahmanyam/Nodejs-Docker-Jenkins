@@ -5,7 +5,7 @@ pipeline {
         stage('Fetch Repository') {
             steps {
                 script {
-                    fetchRepo('main','https://github.com/rayudusubrahmanyam/Nodejs-Docker-Jenkins.git')
+                    git branch: 'main', credentialsId: 'Github', url: 'https://github.com/rayudusubrahmanyam/Nodejs-Docker-Jenkins.git'
                 }
                 
             }
