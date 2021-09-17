@@ -37,7 +37,7 @@ pipeline {
                 dir('terraform') {
                     sh "terraform init"
                     sh "terraform apply --auto-approve"
-                    EC2-INSTANCE-PUBLIC-IP = sh (
+                    EC2_INSTANCE_PUBLIC_IP = sh (
                         script: "terraform output ec2-public-ip" ,
                         returnStdout: true 
                         ).trim()
@@ -50,7 +50,7 @@ pipeline {
             steps {
               script {
                   sleep(time: 90, unit: "SECONDS")
-                  def ec2_Instace = "ubuntu@${EC2-INSTANCE-PUBLIC-IP}"
+                  def ec2_Instace = "ubuntu@${EC2_INSTANCE_PUBLIC_IP}"
                   def shellCmd = "sudo docker run -d -p 8080:8080 rayudusubrahmanyam/nodewebapp:${BUILD_NUMBER}.0"
                 sshagent(['webapp-ssh-key']){
                     sh "ssh -o StrictHostKeyChecking=no ${ec2_Instance} ${shellCmd}"
