@@ -1,7 +1,12 @@
 @Library("jenkins-shared-lib")_
 pipeline {
-    agent any
-    stages {
+     agent {
+        docker {
+            image 'node:lts-buster-slim' 
+            args '-p 3000:3000' 
+        }
+      }
+      stages {
         stage('Fetch Repository') {
             steps {
                 script {
