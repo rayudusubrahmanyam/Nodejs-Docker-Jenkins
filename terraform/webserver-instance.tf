@@ -1,4 +1,4 @@
-resource "aws_instance" "demo-develop-webserver" {
+/*resource "aws_instance" "demo-develop-webserver" {
   ami                         = var.AMIS[var.REGION-ID]
   instance_type               = var.INSTANCE-TYPE
   key_name                    = "demo-develop-key"
@@ -33,3 +33,5 @@ resource "aws_instance" "demo-develop-webserver" {
   }
 
 }
+
+*/
