@@ -28,20 +28,18 @@ pipeline {
 
         stage('Server Provisioning') 
         {
-          steps{
-              environment {
-               AWS_ACCESS_KEY_ID = credentialsId('jenkins-aws-access-id')
-               AWS_SECRET_ACCESS_KEY = credentialsId('jenkins-aws-access-key')
-              }
-              script{
-                  dir('terraform')
-                  {
-                      sh 'terraform init'
-                      sh 'terraform apply --auto-approve'
-                  }
-              }
+            environment {
+               AWS_ACCESS_KEY_ID = credentials('jenkins-aws-access-id')
+               AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-access-key')
+            }
+            steps {
+              script {
+                dir('terraform') {
+                    sh "terraform init"
+                    sh "terraform apply --auto-approve"
+                }
+            }
           }   
         }   
-
     } 
 }
