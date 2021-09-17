@@ -21,11 +21,6 @@ resource "aws_instance" "demo-develop-webserver" {
   sudo usermod -aG docker ubuntu
   sudo systemctl enable docker
   sudo systemctl start docker
-  cd /home/ubuntu
-  git clone https://github.com/rayudusubrahmanyam/Nodejs-Docker-Jenkins.git
-  cd /home/ubuntu/Nodejs-Docker-Jenkins
-  sudo docker build -t docker_web_app:1.0.0 .
-  sudo docker run -d -p 8080:8080 docker_web_app:1.0.0
   EOF   
 
   tags = {
