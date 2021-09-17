@@ -15,6 +15,7 @@ pipeline {
                 npmInstall();
             }
         }
+
         stage('Docker Image Build and Push') {
             steps {
                 script {
@@ -23,7 +24,24 @@ pipeline {
                    dockerPush("rayudusubrahmanyam/nodewebapp:$BUILD_NUMBER.0");
                 }
             }
-        }    
+        }
+
+        stage('Server Provisioning') 
+        {
+          steps{
+              environment {
+               AWS_ACCESS_KEY_ID = credentialsId('jenkins-aws-access-id')
+               AWS_SECRET_ACCESS_KEY = credentialsId('jenkins-aws-access-key')
+              }
+              script{
+                  dir('terraform')
+                  {
+                      sh 'terraform init'
+                      sh 'terraform apply --auto-approve'
+                  }
+              }
+          }   
+        }   
 
     } 
 }

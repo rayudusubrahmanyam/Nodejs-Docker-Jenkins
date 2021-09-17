@@ -13,3 +13,5 @@ git push -u origin main
 git remote add origin git@github.com:rayudusubrahmanyam/Node-
 
 https://github.com/rayudusubrahmanyam/java-maven-jenkins.git
+
+docker run -p 8888:8080 -d rayudusubrahmanyam/nodewebapp:1.0
