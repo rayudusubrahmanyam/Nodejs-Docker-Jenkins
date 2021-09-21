@@ -1,7 +1,7 @@
 resource "aws_instance" "demo-develop-DBserver" {
   ami                         = var.AMIS[var.REGION-ID]
   instance_type               = var.INSTANCE-TYPE
-  key_name                    = "demo-develop-key"
+  key_name                    = "my-webapp-key"
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.demo-develop-subnet-2.id
   vpc_security_group_ids      = [aws_security_group.demo-develop-private-sg.id]
