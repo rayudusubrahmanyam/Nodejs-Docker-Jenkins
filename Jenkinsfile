@@ -10,6 +10,22 @@ pipeline {
                 
             }
         }
+        stage('Code Quality Check via SonarQube') {
+            steps {
+                script {
+                def scannerHome = tool 'SonarQube';
+                    withSonarQubeEnv("SonarQube") {
+                    sh "${tool("SonarQube")}/bin/sonar-scanner \
+                    -Dsonar.projectKey=test-node-js \
+                    -Dsonar.sources=. \
+                    -Dsonar.css.node=. \
+                    -Dsonar.host.url=http://ec2-13-233-87-57.ap-south-1.compute.amazonaws.com:9000 \
+                    -Dsonar.login=d400c4e72f91f3b7ae1ff12bcacda2a0754b2948"
+                        }
+                    }
+                }
+            }
+/*
         stage('NPM Install') {
             steps {
                 npmInstall();
@@ -58,6 +74,6 @@ pipeline {
                   }   
                 }
             }
-        }  
+        } */ 
      }
 }
