@@ -16,7 +16,7 @@ pipeline {
                 def scannerHome = tool 'SonarQube';
                     withSonarQubeEnv("SonarQube") {
                     sh "${tool("SonarQube")}/bin/sonar-scanner \
-                    -Dsonar.projectKey=test-node-js \
+                    -Dsonar.projectKey=node-docker-jenkins \
                     -Dsonar.sources=. \
                     -Dsonar.css.node=. \
                     -Dsonar.host.url=http://ec2-13-233-87-57.ap-south-1.compute.amazonaws.com:9000 \
@@ -25,7 +25,6 @@ pipeline {
                     }
                 }
             }
-/*
         stage('NPM Install') {
             steps {
                 npmInstall();
@@ -74,6 +73,6 @@ pipeline {
                   }   
                 }
             }
-        } */ 
+        }
      }
 }

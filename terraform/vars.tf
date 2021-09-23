@@ -36,3 +36,7 @@ variable AMIS{
        ap-south-1 = "ami-04bde106886a53080"
     }
 }
+
+variable private_key_location{
+    default = "./my-webapp-key.pem"
+}
